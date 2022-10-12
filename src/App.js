@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Homepage from "./components/homepage/homepage.component";
+import HomePage from "./pages/homepage/homepage.component";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Homepage/>
+        <HomePage />
       </div>
     );
   }
