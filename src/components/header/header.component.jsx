@@ -7,7 +7,7 @@ import CartIcon from "../cart-icon/cart-icon.compoent";
 import { auth } from "../../firebase/firebase.utils";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 
-const Header = ({ currentUser, hidden, cartItems }) => (
+const Header = ({ currentUser, hidden, itemCount }) => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo />
@@ -28,17 +28,16 @@ const Header = ({ currentUser, hidden, cartItems }) => (
           SIGN IN
         </Link>
       )}
-      <CartIcon itemCount={cartItems.length} />
+      <CartIcon />
     </div>
     { hidden ? null :
     <CartDropdown />}
   </div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { hidden, cartItems } }) => ({
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({
   currentUser,
   hidden,
-  cartItems
 });
 
 export default connect(mapStateToProps)(Header);
