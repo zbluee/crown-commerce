@@ -6,11 +6,13 @@ import HomePage from "./pages/home/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import SingInAndSignUpPage from "./pages/sign-in-and-sign-up-page/sign-in-and-sign-up-page.component";
 import Header from "./components/header/header.component";
+import CollectionPage from "./pages/collection/collection.component";
 import CheckoutPage from "./pages/checkout/checkout.component";
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { setCurrentUser } from "./redux/user/user.action";
 import { createStructuredSelector } from "reselect";
 import { selectCurrentUser } from "./redux/user/user.selector";
+import NotFound from "./pages/not-found/not-found.component";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -42,7 +44,11 @@ class App extends React.Component {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/shop" element={<ShopPage />} />
+          <Route path="shop" >
+            <Route index element={<ShopPage />} />
+            <Route path=":collectionId" element={<CollectionPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route
             path="/signin"
@@ -54,6 +60,7 @@ class App extends React.Component {
               )
             }
           />
+          <Route path="*" element={<NotFound />}/>
         </Routes>
       </div>
     );
